@@ -1,7 +1,15 @@
-# Using TensorFlow via Docker
+[![Docker Stars](https://img.shields.io/docker/stars/jessewei/tensorflow-watson.svg?style=flat-square)](https://hub.docker.com/r/jessewei/tensorflow-watson/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jessewei/tensorflow-watson.svg?style=flat-square)](https://hub.docker.com/r/jessewei/tensorflow-watson/)
+
+# Using TensorFlow and Watson
 
 This directory contains `Dockerfile`s to make it easy to get up and running with
 TensorFlow via [Docker](http://www.docker.com/).
+
+Those utilites included for [IBM Watson service](https://console.ng.bluemix.net/) laboratory are listed as below:
+- Google Cloud API
+- Watson SDK for nodejs and python
+- Node.js: json-query
 
 ## Installing Docker
 
@@ -14,14 +22,7 @@ quick links here:
 
 ## Which containers exist?
 
-We currently maintain three Docker container images:
-
-* `gcr.io/tensorflow/tensorflow` - TensorFlow with all dependencies - CPU only!
-
-* `gcr.io/tensorflow/tensorflow:latest-gpu` - TensorFlow with all dependencies
-  and support for Nvidia Cuda
-
-Note: We also publish the same containers into
+Base images: `gcr.io/tensorflow/tensorflow` - TensorFlow with all dependencies - CPU only!
 [Docker Hub](https://hub.docker.com/r/tensorflow/tensorflow/tags/).
 
 
@@ -29,25 +30,8 @@ Note: We also publish the same containers into
 
 Run non-GPU container using
 
-    $ docker run -it -p 8888:8888 gcr.io/tensorflow/tensorflow
+    $ docker run -it -p 8888:8888 jessewei/tensorflow-watson
 
-For GPU support install Nvidia drivers (ideally latest) and
-[nvidia-docker](https://github.com/NVIDIA/nvidia-docker). Run using
-
-    $ nvidia-docker run -it -p 8888:8888 gcr.io/tensorflow/tensorflow:latest-gpu
-
-
-Note: If you would have a problem running nvidia-docker you may try the old way
-we have used. But it is not recomended. If you find a bug in nvidia-docker report
-it there please and try using the nvidia-docker as described above.
-
-    $ export CUDA_SO=$(\ls /usr/lib/x86_64-linux-gnu/libcuda.* | xargs -I{} echo '-v {}:{}')
-    $ export DEVICES=$(\ls /dev/nvidia* | xargs -I{} echo '--device {}:{}')
-    $ docker run -it -p 8888:8888 $CUDA_SO $DEVICES gcr.io/tensorflow/tensorflow:latest-gpu
-
-
-## Rebuilding the containers
-
-Just pick the dockerfile corresponding to the container you want to build, and run
-
-    $ docker build --pull -t $USER/tensorflow-suffix -f Dockerfile.suffix .
+` 
+### Notebook list
+The notebook naming start from api and kernel used.
